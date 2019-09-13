@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-v4-rtl/dist/css/bootstrap-rtl.min.css'
+import Navbar from './components/section/Navbar';
+import { Route, Switch } from 'react-router-dom';
+
+import Home from './components/pages/Home';
+import Contact from './components/pages/Contact';
+import About from './components/pages/About';
+import Product from './components/pages/Product';
+import NoMatch from './components/pages/NoMatch';
+import Login from './components/pages/Login';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      <div className='container'>
+        <div style={{ padding: '60px' }}>
+          <Switch>
+            <Route exact={true} path='/' component={Home} />
+            <Route path='/product/:id' component={Product} />
+            <Route path='/contact' component={Contact} />
+            <Route path='/about' component={About} />
+            <Route path='/login' component={Login} />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </div>
+     
+      
     </div>
   );
 }
